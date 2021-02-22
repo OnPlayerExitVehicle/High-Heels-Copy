@@ -98,3 +98,5 @@ Desktop.ini
 **/.idea/**/indexLayout.xml
 **/.idea/**/projectSettingsUpdater.xml
 **/.idea/**/vcs.xml
+
+**/.vsconfig
