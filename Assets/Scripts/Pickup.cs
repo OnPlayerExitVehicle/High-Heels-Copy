@@ -9,10 +9,22 @@ public class Pickup : MonoBehaviour
     [SerializeField] private Transform[] legs = new Transform[2];
     [SerializeField] private Transform[] realLegs = new Transform[2];
     [SerializeField] private int legCount = 1;
+    [SerializeField] private EventManager eventManager;
+
+    public int LegCount
+    {
+        get => legCount;
+        private set
+        {
+            eventManager.onLegCountChanged.Invoke(value);
+            legCount = value;
+        }
+    }
     private Transform temp;
 
     private void Awake()
     {
+        
         for (int i = 0; i < 2; i++)
         {
             legs[i] = transform.GetChild(2 + i);
@@ -33,7 +45,7 @@ public class Pickup : MonoBehaviour
                 temp.localScale = realLegs[i].localScale;
                 temp.position = realLegs[i].position - (realLegs[i].up * realLegs[i].localScale.y * legCount * 2);
             }
-            legCount++;
+            LegCount++;
         }
     }
 }
